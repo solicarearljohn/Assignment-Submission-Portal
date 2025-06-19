@@ -88,5 +88,5 @@ Assignment Submission Portal  is a web-based application designed to streamline 
 
 ## Contact
 For questions or support, contact:
-- **Name**: Earl John S. Solicar | Jetro Uy
+- **Name**: Earl John S. Solicar | Jetro Uy | Kim Barry Distrito
 - **Email**: solicarearljohn@example.com

@@ -13,7 +13,7 @@
                             <div class="card h-100 shadow-sm hover:shadow-lg transition" style="cursor:pointer; border-radius:1rem;" onclick="window.location='{{ route('student.dashboard', $course->id) }}'">
                                 <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                     <h4 class="card-title text-center mb-2" style="font-weight:bold; color:#059669;">{{ $course->name }}</h4>
-                                    <span class="text-white">Instructor: {{ $course->faculty->name ?? '-' }}</span>
+                                    <span class="text-white">Instructor: {{ $course->user->name ?? '-' }}</span>
                                 </div>
                             </div>
                         </div>
