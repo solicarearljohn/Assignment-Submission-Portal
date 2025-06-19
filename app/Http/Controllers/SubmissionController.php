@@ -28,13 +28,13 @@ class SubmissionController extends Controller
 
         $filePath = $request->file('file')->store('submissions', 'public');
 
-        Submission::create([
-            'assignment_id' => $assignment->id,
-            'student_id' => $user->id,
-            'file_path' => $filePath,
-            'submitted_at' => now(),
-            'status' => 'pending',
-        ]);
+            Submission::create([
+                'assignment_id' => $assignment->id,
+                'user_id' => $user->id,
+                'file_path' => $filePath,
+                'submitted_at' => now(),
+                'status' => 'pending',
+            ]);
 
         // Redirect to the per-course dashboard after submission
         return redirect()->route('student.dashboard', $assignment->course_id)
@@ -46,7 +46,7 @@ class SubmissionController extends Controller
         $assignment = Assignment::findOrFail($assignmentId);
         $user = Auth::user();
         $submissions = Submission::where('assignment_id', $assignmentId)
-            ->where('student_id', $user->id)
+            ->where('user_id', $user->id)
             ->get();
         return view('submissions.index', compact('assignment', 'submissions'));
     }

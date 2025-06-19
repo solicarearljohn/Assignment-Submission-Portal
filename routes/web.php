@@ -20,7 +20,7 @@ Route::get('/dashboard', function () {
         }])->where('user_id', $user->id)->get();
     } else {
         $courses = Course::with('assignments')->get();
-        $submissions = Submission::where('student_id', $user->id)->get()->keyBy('assignment_id');
+        $submissions = Submission::where('user_id', $user->id)->get()->keyBy('assignment_id');
     }
     return view('dashboard', [
         'courses' => $courses,
@@ -75,7 +75,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/student-dashboard/{course}', function ($courseId) {
         $user = auth()->user();
         $course = \App\Models\Course::with('assignments', 'faculty')->findOrFail($courseId);
-        $submissions = \App\Models\Submission::where('student_id', $user->id)->get()->keyBy('assignment_id');
+        $submissions = \App\Models\Submission::where('user_id', $user->id)->get()->keyBy('assignment_id');
         return view('dashboard', [
             'courses' => collect([$course]),
             'submissions' => $submissions,

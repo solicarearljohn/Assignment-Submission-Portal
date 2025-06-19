@@ -20,7 +20,7 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                @if(Auth::user()->role_id == 2)
                     <div class="flex items-center me-2">
                         <div style="position:relative;display:inline-block;">
                             <button id="notifBtn" style="background:none;border:none;outline:none;cursor:pointer;position:relative;">

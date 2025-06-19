@@ -62,7 +62,7 @@ class User extends Authenticatable
     public function submissions()
     {
         // For students: submissions they made
-        return $this->hasMany(Submission::class, 'student_id');
+        return $this->hasMany(Submission::class, 'user_id');
     }
 
     public function role()
