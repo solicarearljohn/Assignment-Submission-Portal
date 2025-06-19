@@ -100,8 +100,8 @@
                                                     <li class="mb-2">
                                                         <div class="d-flex align-items-center flex-wrap">
                                                             <div class="mt-1 ms-2" style="font-weight:600;font-size:0.98rem;font-style:italic;">
-                                                            @if($course->user)
-                                                                <span style="color:#059669;">{{ $course->user->name }}</span> <span style="color:#fff;">posted an assignment!</span>
+                                                            @if($course->faculty)
+                                                                <span style="color:#059669;">{{ $course->faculty->name }}</span> <span style="color:#fff;">posted an assignment!</span>
                                                             @endif
                                                         </div>
                                                             <span class="fw-bold">{{ $assignment->title }}</span>
