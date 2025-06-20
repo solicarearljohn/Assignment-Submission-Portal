@@ -21,7 +21,7 @@
                             <th class="text-white">Status</th>
                             <th class="text-white">Grade</th>
                             <th class="text-white">Feedback</th>
-                            <th class="text-white">Action</th>
+                            <th class="text-white">Feedback</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,12 +51,17 @@
                                 </td>
                                 <td class="text-white" style="padding: 1rem 0.75rem;">{{ $submission->submitted_at }}</td>
                                 <td class="text-white" style="padding: 1rem 0.75rem;">{{ $submission->status }}</td>
-                                <td class="text-white" style="padding: 1rem 0.75rem;">{{ $submission->grade ?? '-' }}</td>
+                                <td class="text-white" style="padding: 1rem 0.75rem;">{{ $submission->grade ? $submission->grade->value : '-' }}</td>
                                 <td class="text-white" style="padding: 1rem 0.75rem;">{{ $submission->feedback ?? '-' }}</td>
                                 <td style="padding: 1rem 0.75rem;">
                                     <form action="{{ route('submissions.update', $submission->id) }}" method="POST" class="d-flex flex-column align-items-center gap-2" style="min-width:180px;">
                                         @csrf
-                                        <input type="text" name="grade" value="{{ $submission->grade }}" placeholder="Grade" class="form-control bg-gray-100 text-black mb-2" style="width: 100px; display:inline-block;">
+                                        <select name="grade_id" class="form-control bg-gray-100 text-black mb-2" style="width: 100px; display:inline-block;">
+                                            <option value="">Select Grade</option>
+                                            @foreach($grades as $grade)
+                                                <option value="{{ $grade->id }}" {{ $submission->grade_id == $grade->id ? 'selected' : '' }}>{{ $grade->value }}</option>
+                                            @endforeach
+                                        </select>
                                         <input type="text" name="feedback" value="{{ $submission->feedback }}" placeholder="Feedback" class="form-control bg-gray-100 text-black mb-2" style="width: 140px; display:inline-block;">
                                         <button type="submit" class="btn btn-success btn-sm mt-1" style="width:100px;font-weight:bold;background-color:#059669;color:#fff;border-radius:2rem;">Save</button>
                                     </form>

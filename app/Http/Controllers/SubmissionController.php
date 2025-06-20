@@ -55,18 +55,19 @@ class SubmissionController extends Controller
     {
         $assignment = Assignment::findOrFail($assignmentId);
         $submissions = Submission::where('assignment_id', $assignmentId)->with('student')->get();
-        return view('submissions.review', compact('assignment', 'submissions'));
+        $grades = \App\Models\Grade::all();
+        return view('submissions.review', compact('assignment', 'submissions', 'grades'));
     }
 
     public function update(Request $request, $submissionId)
     {
         $request->validate([
-            'grade' => 'nullable|string|max:10',
+            'grade_id' => 'nullable|exists:grades,id',
             'feedback' => 'nullable|string|max:255',
             'status' => 'nullable|string|max:20',
         ]);
         $submission = Submission::findOrFail($submissionId);
-        $submission->grade = $request->grade;
+        $submission->grade_id = $request->grade_id;
         $submission->feedback = $request->feedback;
         $submission->status = $request->status ?? 'graded';
         $submission->save();

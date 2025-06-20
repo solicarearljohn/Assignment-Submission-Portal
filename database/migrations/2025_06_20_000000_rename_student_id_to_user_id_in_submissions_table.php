@@ -29,11 +29,10 @@ return new class extends Migration
     {
         Schema::table('submissions', function (Blueprint $table) {
             // Drop foreign key constraint on user_id
-            $table->dropForeign(['user_id']);
-    
+           
             $table->renameColumn('user_id', 'student_id');
             // Add foreign key constraint on student_id
-            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 };

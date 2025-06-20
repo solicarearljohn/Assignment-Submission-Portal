@@ -26,7 +26,7 @@
                                 <td><a href="{{ asset('storage/' . $submission->file_path) }}" target="_blank" class="text-blue-400 underline">Download</a></td>
                                 <td class="text-white">{{ $submission->submitted_at }}</td>
                                 <td class="text-white">{{ $submission->status }}</td>
-                                <td class="text-white">{{ $submission->grade ?? '-' }}</td>
+                                <td class="text-white">{{ $submission->grade ? $submission->grade->value : '-' }}</td>
                                 <td class="text-white">{{ $submission->feedback ?? '-' }}</td>
                             </tr>
                         @endforeach

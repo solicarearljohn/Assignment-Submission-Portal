@@ -14,7 +14,7 @@ class Submission extends Model
         'user_id',
         'file_path',
         'submitted_at',
-        'grade',
+        'grade_id',
         'status',
         'feedback',
     ];
@@ -24,13 +24,13 @@ class Submission extends Model
         return $this->belongsTo(Assignment::class);
     }
 
-    public function user()
+    public function student()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function student()
+    public function grade()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Grade::class, 'grade_id');
     }
 }
