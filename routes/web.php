@@ -43,6 +43,16 @@ Route::middleware('auth')->group(function () {
     })->name('notifications.markAsRead');
 });
 
+// Debug route to dump current user's unread notifications
+Route::get('/debug-notifications', function () {
+    $user = Auth::user();
+    return [
+        'user_id' => $user->id,
+        'unread_notifications_count' => $user->unreadNotifications->count(),
+        'unread_notifications' => $user->unreadNotifications,
+    ];
+})->middleware(['auth']);
+
 // Faculty routes
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
