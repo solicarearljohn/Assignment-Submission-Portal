@@ -72,6 +72,7 @@ class SubmissionController extends Controller
         $submission->save();
         // Notify student
         $submission->student->notify(new SubmissionGraded($submission));
+        \Log::info('Graded submission user_id: ' . $submission->user_id . ', notified user_id: ' . $submission->student->id . ', submission_id: ' . $submission->id);
         return back()->with('success', 'Submission graded and feedback saved!');
     }
 
